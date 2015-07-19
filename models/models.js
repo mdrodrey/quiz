@@ -54,7 +54,7 @@ sequelize.sync().then(function() {
           respuesta: 'Lisboa'
         }
 
-      ).success(function() {
+      ).then(function() {
         console.log('Base de datos (tabla quiz) inicializada')
       });
     };
