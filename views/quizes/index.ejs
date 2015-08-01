@@ -1,3 +1,14 @@
+
+<!-- buscar pregunta -->
+
+ <form method="get" action="/quizes">        
+        Filtrar Preguntas: 
+        <input type="text" name="textoAbuscar" value="texto_a_buscar"/>
+        <input type="submit" value="Buscar">
+ </form>
+
+<!-- lista de pregutas -->
+<div align="center">
 <table>
   <% var i; for (i=0; i < quizes.length; i++) { %>        
     <tr>
@@ -5,3 +16,5 @@
     </tr> 
   <% } %>
 </table>
+<a href="/quizes/new"><button>Crear pregunta</button></a>
+</div>
