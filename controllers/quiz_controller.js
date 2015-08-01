@@ -1,5 +1,6 @@
 var models = require('../models/models.js');
 
+<<<<<<< HEAD
 
 // Autoload :id
 exports.load = function(req, res, next, quizId) {
@@ -40,10 +41,16 @@ exports.show = function(req, res) {
             quiz: req.quiz,
             errors: []
         });
+=======
+exports.question = function(req, res) {
+    models.Quiz.findAll().then(function(quiz) {
+    res.render('quizes/question', {pregunta : quiz[0].pregunta});
+>>>>>>> 756d27aff18edf16608346a5a350e5ba5942411a
     })
 };
 
 exports.answer = function(req, res) {
+<<<<<<< HEAD
 
     models.Quiz.find(req.params.quizId).then(function(quiz) {
 
@@ -62,6 +69,17 @@ exports.answer = function(req, res) {
             });
         }
 
+=======
+    
+     models.Quiz.findAll().then(function(quiz) {
+         
+    if (req.query.respuesta === quiz[0].respuesta) {
+        res.render('quizes/answer', {respuesta : 'Correcto' });
+    } else {
+        res.render('quizes/answer', {respuesta : 'Incorrecto' });   
+    }
+    
+>>>>>>> 756d27aff18edf16608346a5a350e5ba5942411a
     })
 };
 
