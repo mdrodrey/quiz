@@ -1,22 +1,21 @@
 
 <!-- buscar pregunta -->
 
- <form method="get" action="/quizes">        
+ <form method="get" action="/quizes" class="bootstrap-frm" style="text-align: left">        
         Filtrar Preguntas: 
-        <input type="text" name="textoAbuscar" value=""/>
-        <input type="submit" value="Buscar">
+        <input type="text" name="textoAbuscar" value="" style="width: 15%"/>
+        <input type="submit" value="Buscar" class="button">
  </form>
 
 <!-- lista de pregutas -->
-<div>
+<div class="bootstrap-frm">
   
-<fieldset>
-  <legend>LISTA DE PREGUNTAS</legend>
+<h1>LISTA DE PREGUNTAS</h1>
   
 <table>
   
   <tr>
-    <td><a href="/quizes/new"><button>Crear pregunta</button></a></td>
+    <td><a href="/quizes/new"><button class="button">Crear pregunta</button></a></td>
   </tr>
   <tr>
     <td><strong>Tema</strong></td>
@@ -32,11 +31,11 @@
      
       <!--<td> <a href="/quizes/<%= quizes[i].id %>/edit"><buttom type="button">editar</buttom></td>-->
       
-      <td><button onclick="window.location.href='/quizes/<%= quizes[i].id %>/edit'">editar</button></td>
+      <td><button onclick="window.location.href='/quizes/<%= quizes[i].id %>/edit'" class="button">editar</button></td>
       
       <td>
           <form method="post" action="/quizes/<%= quizes[i].id %>?_method=delete">
-            <button type="submit" onClick="return confirm('Borrar: <%= quizes[i].pregunta %>');">
+            <button type="submit" onClick="return confirm('Borrar: <%= quizes[i].pregunta %>');" class="button">
               borrar
             </button>
           </form>
@@ -44,7 +43,5 @@
     </tr> 
   <% } %>
 </table>
-
-</fieldset>
 
 </div>
