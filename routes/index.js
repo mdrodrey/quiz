@@ -10,7 +10,7 @@ router.get('/', function(req, res) {
 });
 
 router.get('/author', function(req, res){
-  res.render('author', { title: 'Creditos'});
+  res.render('author', { title: 'Creditos', errors: []});
 });
 
 // Autoload de comandos con ids

@@ -17,9 +17,9 @@ nav span             { margin: 0px 10px 0px 0px;
 
 .quiz_img 			 { height: 150px; float: left;}
 
-label {
-  width: 25%;
-  float: left;
+div label {
+  display: inline-block;
+    width: 150px;
 }
 
 input:focus {
