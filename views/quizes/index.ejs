@@ -3,21 +3,35 @@
 
  <form method="get" action="/quizes">        
         Filtrar Preguntas: 
-        <input type="text" name="textoAbuscar" value="texto_a_buscar"/>
+        <input type="text" name="textoAbuscar" value=""/>
         <input type="submit" value="Buscar">
  </form>
 
 <!-- lista de pregutas -->
-<div align="center">
+<div>
   
-  <a href="/quizes/new"><button>Crear pregunta</button></a>
+  
   
 <table>
-  <% var i; for (i=0; i < quizes.length; i++) { %>        
+  
+  <tr>
+    <td><a href="/quizes/new"><button>Crear pregunta</button></a></td>
+  </tr>
+  <tr>
+    <td><strong>Tema</strong></td>
+    <td><strong>Pregunta</strong></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <% var i; for (i=0; i < quizes.length; i++) { %>    
     <tr>
+       <td><%= quizes[i].tema %></td>
+       
       <td><a href="/quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a></td>
      
-      <td> <a href="/quizes/<%= quizes[i].id %>/edit"><buttom>editar</buttom></td>
+      <!--<td> <a href="/quizes/<%= quizes[i].id %>/edit"><buttom type="button">editar</buttom></td>-->
+      
+      <td><button onclick="window.location.href='/quizes/<%= quizes[i].id %>/edit'">editar</button></td>
       
       <td>
           <form method="post" action="/quizes/<%= quizes[i].id %>?_method=delete">
@@ -29,5 +43,7 @@
     </tr> 
   <% } %>
 </table>
+
+
 
 </div>

@@ -16,3 +16,13 @@ nav span             { margin: 0px 10px 0px 0px;
 .right 				 {float: right;}
 
 .quiz_img 			 { height: 150px; float: left;}
+
+label {
+  width: 25%;
+  float: left;
+}
+
+input:focus {
+  border: 2px solid #000;
+  background: #F3F3F3;
+}
