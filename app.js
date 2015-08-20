@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var partials = require('express-partials');
 var methodOverride = require('method-override');
+var session = require('express-session');
 
 var routes = require('./routes/index');
 
@@ -22,9 +23,52 @@ app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
-app.use(cookieParser());
+app.use(cookieParser('Quiz 2015'));
+app.use(session());
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method'));
+var session = require('express-session');
+
+// Helpers dinamicos:
+app.use(function(req, res, next) {
+
+  // si no existe lo inicializa
+  if (!req.session.redir) {
+    req.session.redir = '/';
+  }
+  // guardar path en session.redir para despues de login
+  if (!req.path.match(/\/login|\/logout|\/user/)) {
+    req.session.redir = req.path;
+  }
+
+  // Hacer visible req.session en las vistas
+
+  res.locals.session = req.session;
+  next();
+});
+
+// Autologout
+app.use( function(req, res, next) {
+      
+      
+  var ahora = new Date().getTime(); 
+ 
+  req.session.timeOutSeg = 60 ;
+  if ( req.session.ultimaTransaccion != 0  && req.session.user) {  
+      
+      console.log("dif " +  (ahora-req.session.ultimaTransaccion));
+      // 1000 es un seg              
+      if ((ahora-req.session.ultimaTransaccion) > 1000) {
+          console.log("<<< eliminando sesion");
+          delete req.session.user;
+          res.redirect("/login");
+      }
+  }
+  req.session.ultimaTransaccion = ahora;
+  res.locals.session = req.session;
+  next();
+});
 
 app.use('/', routes);
 
