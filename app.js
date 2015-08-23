@@ -50,16 +50,17 @@ app.use(function(req, res, next) {
 
 // Autologout
 app.use( function(req, res, next) {
-      
-      
+     
   var ahora = new Date().getTime(); 
+  console.log("user " +  req.session.user);
+  console.log("ultima trans " +  req.session.ultimaTransaccion);
  
   req.session.timeOutSeg = 60 ;
   if ( req.session.ultimaTransaccion != 0  && req.session.user) {  
       
       console.log("dif " +  (ahora-req.session.ultimaTransaccion));
       // 1000 es un seg              
-      if ((ahora-req.session.ultimaTransaccion) > 1000) {
+      if ((ahora-req.session.ultimaTransaccion) >60000) {
           console.log("<<< eliminando sesion");
           delete req.session.user;
           res.redirect("/login");
@@ -72,7 +73,7 @@ app.use( function(req, res, next) {
 
 app.use('/', routes);
 
-// catch 404 and forward to error handler
+// catch 404 and forward to error handlerori
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
